@@ -3557,25 +3557,25 @@ a {
 /* Mobile Navbar Overrides */
 @media (max-width: 991px) {
   .navbar {
-    padding: 15px 0 !important;
+    padding: 10px 0 !important;
     background: rgba(5, 6, 8, 0.98) !important;
   }
 
   .navbar-collapse {
-    background: #050608 !important; /* Solid background for readability */
+    background: #050608 !important;
     position: fixed;
-    top: 72px;
+    top: 62px; /* Adjusted for smaller navbar */
     left: 0;
     right: 0;
     bottom: 0;
-    padding: 2rem !important;
+    padding: 1.5rem !important; /* Minimized padding */
     overflow-y: auto;
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     border-top: 1px solid rgba(255, 255, 255, 0.05);
     display: block !important;
     opacity: 0;
     visibility: hidden;
-    transform: translateY(-20px);
+    transform: translateY(-10px);
   }
 
   .navbar-collapse.show {
@@ -3585,119 +3585,101 @@ a {
   }
 
   .navbar-nav {
-    gap: 1rem;
+    gap: 0.5rem; /* Minimized gap */
     text-align: center;
   }
 
   .nav-link {
-    font-size: 1.1rem !important;
+    font-size: 0.95rem !important; /* Minimized font size */
     margin: 0 !important;
-    padding: 12px 0 !important;
+    padding: 10px 0 !important;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+
+  /* Compact Dropdowns */
+  .rr-dropdown {
+    padding: 8px !important;
+  }
+  
+  .dropdown-item {
+    font-size: 0.85rem !important;
+    padding: 8px 12px !important;
   }
 
   /* Hamburger Icon Styling */
   .navbar-toggler {
     border: none !important;
     padding: 0 !important;
-    outline: none !important;
-    box-shadow: none !important;
+    width: 32px;
+    height: 32px;
   }
 
   .navbar-toggler-icon {
-    width: 24px;
-    height: 24px;
+    width: 20px;
+    height: 20px;
     background-image: none !important;
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
   }
 
   .navbar-toggler-icon::before,
   .navbar-toggler-icon::after {
-    content: '';
-    position: absolute;
-    width: 24px;
-    height: 2px;
+    width: 20px;
+    height: 1.5px;
     background-color: var(--accent);
-    transition: all 0.3s ease;
   }
 
-  .navbar-toggler-icon::before { transform: translateY(-8px); }
-  .navbar-toggler-icon::after { transform: translateY(8px); }
+  .navbar-toggler-icon::before { transform: translateY(-6px); }
+  .navbar-toggler-icon::after { transform: translateY(6px); }
   
-  /* Create middle line */
-  .navbar-toggler:not(.collapsed) .navbar-toggler-icon {
-    background-color: transparent !important;
-  }
-  
-  .navbar-toggler:not(.collapsed) .navbar-toggler-icon::before {
-    transform: rotate(45deg);
-  }
-  
-  .navbar-toggler:not(.collapsed) .navbar-toggler-icon::after {
-    transform: rotate(-45deg);
-  }
-
-  /* Dropdowns on Mobile */
-  .rr-dropdown {
-    background: rgba(255, 255, 255, 0.03) !important;
-    border: none !important;
-    box-shadow: none !important;
-    margin-top: 0 !important;
-    padding: 10px !important;
-    position: static !important;
-    transform: none !important;
-    width: 100% !important;
-  }
-
-  .cars-mega-menu {
-    display: block !important;
-    opacity: 1 !important;
-    visibility: visible !important;
-    padding: 15px !important;
-    max-height: 400px;
-    overflow-y: auto;
-  }
-
-  .mega-menu-grid {
-    grid-template-columns: 1fr !important;
-    gap: 10px !important;
-  }
-
-  .mega-menu-item {
-    flex-direction: row !important;
-    align-items: center !important;
-    text-align: left !important;
-    padding: 10px !important;
-  }
-
-  .mega-menu-img-wrapper {
-    width: 80px !important;
-    margin-bottom: 0 !important;
-    margin-right: 15px !important;
-  }
+  .navbar-toggler:not(.collapsed) .navbar-toggler-icon::before { transform: rotate(45deg); }
+  .navbar-toggler:not(.collapsed) .navbar-toggler-icon::after { transform: rotate(-45deg); }
 }
 
-/* General Layout Fixes */
+/* General Layout Minimization */
 @media (max-width: 768px) {
+  .hero-content {
+    padding-top: 80px !important;
+    padding-bottom: 40px !important;
+  }
+
   .hero-title {
-    font-size: 2.8rem !important;
-    line-height: 1.1 !important;
+    font-size: 2.2rem !important; /* Minimized from 2.8rem */
+    line-height: 1.2 !important;
+    margin-bottom: 1rem !important;
   }
   
   .hero-subtitle {
-    font-size: 0.9rem !important;
-    margin-bottom: 2rem !important;
+    font-size: 0.85rem !important;
+    margin-bottom: 1.5rem !important;
+    max-width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .hero-stats-row {
+    gap: 1rem !important;
+  }
+
+  .hero-stat-value {
+    font-size: 1.5rem !important; /* Minimized */
+  }
+
+  .hero-stat-label {
+    font-size: 0.6rem !important;
+  }
+
+  .btn-lg {
+    padding: 12px 24px !important;
+    font-size: 0.85rem !important;
   }
 
   .cars-grid {
     grid-template-columns: 1fr !important;
-    padding: 0 10px !important;
+    gap: 20px !important;
   }
 
-  .admin-page-container {
-    padding: 1.5rem 10px !important;
+  .section-title {
+    font-size: 1.8rem !important;
   }
 }
 
@@ -3712,11 +3694,11 @@ body, html {
   overflow: hidden;
 }
 
-/* Table responsiveness */
-.admin-table-wrap {
-  margin: 0 -10px;
-  width: calc(100% + 20px);
-  border-radius: 0 !important;
+/* Compact Admin elements */
+@media (max-width: 991px) {
+  .admin-page-container {
+    padding: 1rem 10px !important;
+  }
 }
 
 
