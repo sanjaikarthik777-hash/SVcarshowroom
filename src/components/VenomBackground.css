@@ -1,0 +1,168 @@
+/* ============================================================
+   LUXURY LIQUID GOLD BACKGROUND ANIMATION
+   ============================================================ */
+
+.venom-bg-wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
+    overflow: hidden;
+    background-color: #050608; /* Deep dark blue/black base */
+    pointer-events: none;
+}
+
+/* The container applies the SVG gooey filter */
+.venom-container {
+    width: 100%;
+    height: 100%;
+    filter: url('#venom-goo');
+    position: relative;
+    opacity: 0.6; /* Subtle elegance */
+}
+
+/* Base style for the luxury liquid blobs */
+.venom-blob {
+    position: absolute;
+    /* Rich radial gradient for a 3D liquid gold effect */
+    background: radial-gradient(circle at 30% 30%, rgba(212, 175, 55, 0.4) 0%, rgba(139, 101, 8, 0.15) 50%, rgba(0, 0, 0, 0.8) 100%);
+    border-radius: 50%;
+    box-shadow: 
+        inset 0 0 50px rgba(255, 223, 112, 0.1), 
+        0 0 40px rgba(212, 175, 55, 0.05); /* Soft outer glow */
+    mix-blend-mode: screen;
+}
+
+/* Blob 1 - Top Left Large */
+.venom-blob.blob-1 {
+    width: 45vw;
+    height: 45vw;
+    top: -10%;
+    left: -15%;
+    animation: luxuryMove1 24s infinite alternate ease-in-out;
+}
+
+/* Blob 2 - Bottom Right Large */
+.venom-blob.blob-2 {
+    width: 55vw;
+    height: 50vw;
+    bottom: -15%;
+    right: -15%;
+    animation: luxuryMove2 28s infinite alternate ease-in-out;
+    background: radial-gradient(circle at 70% 70%, rgba(184, 150, 42, 0.3) 0%, rgba(70, 50, 0, 0.1) 60%, transparent 100%);
+}
+
+/* Blob 3 - Center Drifter */
+.venom-blob.blob-3 {
+    width: 35vw;
+    height: 35vw;
+    top: 20%;
+    left: 30%;
+    animation: luxuryMove3 30s infinite alternate-reverse ease-in-out;
+    background: radial-gradient(circle at 50% 50%, rgba(255, 215, 0, 0.15) 0%, rgba(20, 15, 0, 0.4) 70%, transparent 100%);
+}
+
+/* Blob 4 - Top Right Accent */
+.venom-blob.blob-4 {
+    width: 25vw;
+    height: 25vw;
+    top: -5%;
+    right: 10%;
+    animation: luxuryMove4 20s infinite alternate ease-in-out;
+}
+
+/* Blob 5 - Bottom Left Drifter */
+.venom-blob.blob-5 {
+    width: 30vw;
+    height: 40vw;
+    bottom: 5%;
+    left: 5%;
+    animation: luxuryStretch1 25s infinite alternate ease-in-out;
+    border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
+}
+
+/* Blob 6 - Floating Ribbon */
+.venom-blob.blob-6 {
+    width: 40vw;
+    height: 20vw;
+    top: 45%;
+    right: 5%;
+    animation: luxuryStretch2 32s infinite alternate-reverse ease-in-out;
+    border-radius: 60% 40% 30% 70% / 50% 40% 50% 60%;
+    background: radial-gradient(ellipse at center, rgba(212, 175, 55, 0.2) 0%, transparent 80%);
+}
+
+/* Blob 7 - Background Depth */
+.venom-blob.blob-7 {
+    width: 40vw;
+    height: 40vw;
+    bottom: 20%;
+    left: 20%;
+    animation: luxuryMove5 35s infinite alternate ease-in-out;
+    opacity: 0.5;
+}
+
+/* Blob 8 - Small Highlight */
+.venom-blob.blob-8 {
+    width: 20vw;
+    height: 20vw;
+    top: 30%;
+    right: 25%;
+    animation: luxuryMove6 22s infinite alternate-reverse ease-in-out;
+    box-shadow: inset 0 0 30px rgba(255, 255, 255, 0.05);
+}
+
+
+/* --- LUXURY FLUID ANIMATIONS --- */
+
+@keyframes luxuryMove1 {
+    0% { transform: translate(0, 0) scale(1) rotate(0deg); }
+    33% { transform: translate(8vw, 10vh) scale(1.1) rotate(20deg); border-radius: 55% 45% 40% 60% / 50% 40% 60% 50%; }
+    66% { transform: translate(3vw, 18vh) scale(0.95) rotate(45deg); border-radius: 45% 55% 60% 40% / 60% 50% 40% 60%; }
+    100% { transform: translate(12vw, -5vh) scale(1.05) rotate(90deg); border-radius: 50%; }
+}
+
+@keyframes luxuryMove2 {
+    0% { transform: translate(0, 0) scale(1) rotate(0deg); }
+    50% { transform: translate(-10vw, -12vh) scale(1.1) rotate(-30deg); border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%; }
+    100% { transform: translate(-20vw, 5vh) scale(0.9) rotate(-60deg); border-radius: 50%; }
+}
+
+@keyframes luxuryMove3 {
+    0% { transform: translate(0, 0) scale(1) rotate(0deg); border-radius: 50%; }
+    50% { transform: translate(-8vw, 12vh) scale(1.2) rotate(45deg); border-radius: 40% 60% 50% 50% / 40% 40% 60% 60%; }
+    100% { transform: translate(10vw, -15vh) scale(0.95) rotate(90deg); border-radius: 50%; }
+}
+
+@keyframes luxuryMove4 {
+    0% { transform: translate(0, 0) scale(1); }
+    33% { transform: translate(-8vw, 8vh) scale(1.15); }
+    66% { transform: translate(-15vw, -3vh) scale(0.85); }
+    100% { transform: translate(5vw, -8vh) scale(1.1); }
+}
+
+@keyframes luxuryMove5 {
+    0% { transform: translate(0, 0) scale(1); }
+    50% { transform: translate(15vw, -15vh) scale(1.1) rotate(25deg); }
+    100% { transform: translate(3vw, -25vh) scale(0.95) rotate(45deg); }
+}
+
+@keyframes luxuryMove6 {
+    0% { transform: translate(0, 0) scale(1); }
+    50% { transform: translate(-12vw, 15vh) scale(1.1) rotate(-20deg); }
+    100% { transform: translate(-20vw, -5vh) scale(0.9) rotate(-40deg); }
+}
+
+@keyframes luxuryStretch1 {
+    0% { transform: translate(0, 0) scale(1, 1) rotate(0deg); }
+    50% { transform: translate(6vw, -12vh) scale(1.3, 0.8) rotate(15deg); }
+    100% { transform: translate(-5vw, -20vh) scale(0.9, 1.1) rotate(-10deg); }
+}
+
+@keyframes luxuryStretch2 {
+    0% { transform: translate(0, 0) scale(1, 1) rotate(0deg); }
+    50% { transform: translate(-15vw, 4vh) scale(1.4, 0.7) rotate(-10deg); }
+    100% { transform: translate(-25vw, -8vh) scale(0.8, 1.2) rotate(15deg); }
+}

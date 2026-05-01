@@ -1,0 +1,47 @@
+/* ============================================================
+   GLOBAL GO BACK BUTTON
+   ============================================================ */
+.global-go-back {
+  position: fixed;
+  bottom: 30px;
+  left: 30px;
+  z-index: 9999;
+  background: rgba(5, 6, 8, 0.85);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(212, 175, 55, 0.2);
+  color: var(--text-primary);
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  cursor: pointer;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  text-decoration: none;
+}
+
+.global-go-back:hover {
+  background: rgba(212, 175, 55, 0.9);
+  color: #050608;
+  transform: translateY(-5px);
+  box-shadow: 0 15px 35px rgba(212, 175, 55, 0.3);
+  border-color: rgba(212, 175, 55, 1);
+}
+
+.go-back-icon {
+  margin-bottom: 2px;
+}
+
+@media (max-width: 768px) {
+  .global-go-back {
+    bottom: 20px;
+    left: 20px;
+    width: 45px;
+    height: 45px;
+    font-size: 1.2rem;
+  }
+}

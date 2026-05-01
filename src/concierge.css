@@ -1,0 +1,401 @@
+/* Concierge Service Pages Styling */
+
+.service-detail-page {
+    min-height: 100vh;
+    background: transparent;
+    color: var(--text-primary);
+    overflow-x: hidden;
+}
+
+/* Hero Section */
+.sd-hero {
+    position: relative;
+    width: 100%;
+    min-height: 70vh;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    display: flex;
+    align-items: center;
+    padding-top: 80px;
+    /* offset navbar */
+}
+
+.sd-hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, var(--bg-primary) 0%, rgba(8, 14, 28, 0.6) 100%);
+}
+
+.sd-hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.sd-hero-content h1 {
+    font-size: 3.8rem;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 800;
+    margin-bottom: 1.5rem;
+    line-height: 1.2;
+}
+
+.sd-hero-content p {
+    font-size: 1.15rem;
+    color: var(--text-muted);
+    margin-bottom: 2.5rem;
+    line-height: 1.6;
+}
+
+.gold-text-gradient {
+    background: linear-gradient(135deg, #d4af37, #f3e5ab, #d4af37);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    display: inline-block;
+}
+
+.btn-gold-fill-glow {
+    display: inline-block;
+    padding: 16px 45px;
+    font-size: 1.05rem;
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    color: #050608;
+    background: linear-gradient(135deg, #d4af37, #b8962a);
+    border-radius: 50px;
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    box-shadow: 0 0 20px rgba(212, 175, 55, 0.4);
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+}
+
+.btn-gold-fill-glow:hover {
+    box-shadow: 0 0 40px rgba(212, 175, 55, 0.7), 0 0 10px rgba(212, 175, 55, 0.8) inset;
+    transform: translateY(-3px);
+    color: #050608;
+    background: linear-gradient(135deg, #e6c855, #d4af37);
+}
+
+/* Features Section */
+.sd-features {
+    padding: 6rem 1rem;
+}
+
+.sd-features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 2.5rem;
+    margin-top: 4rem;
+}
+
+.glass-card {
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 20px;
+    padding: 3rem 2rem;
+    text-align: center;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+    transition: all 0.4s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.glass-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.05), transparent);
+    transform: skewX(-20deg);
+    transition: all 0.7s ease;
+}
+
+.glass-card:hover::before {
+    left: 150%;
+}
+
+.glass-card:hover {
+    border-color: rgba(212, 175, 55, 0.4);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 0 0 20px rgba(212, 175, 55, 0.15);
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.sd-icon-glow {
+    font-size: 3.5rem;
+    margin-bottom: 1.5rem;
+    display: inline-block;
+    filter: drop-shadow(0 0 12px rgba(212, 175, 55, 0.6));
+    transition: transform 0.3s ease;
+}
+
+.glass-card:hover .sd-icon-glow {
+    transform: scale(1.2);
+}
+
+.sd-feature-card h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: #fff;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+}
+
+.sd-feature-card p {
+    font-size: 1rem;
+    color: var(--text-muted);
+    line-height: 1.7;
+}
+
+/* Testimonial Section */
+.sd-testimonial {
+    position: relative;
+    padding: 8rem 1rem;
+    background: #0b111e;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    text-align: center;
+    overflow: hidden;
+}
+
+.sd-testimonial-bg {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at center, rgba(212, 175, 55, 0.08) 0%, transparent 60%);
+}
+
+.sd-testimonial-content {
+    position: relative;
+    z-index: 2;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.sd-quote-mark {
+    font-size: 6rem;
+    color: rgba(212, 175, 55, 0.25);
+    font-family: serif;
+    line-height: 1;
+    margin-bottom: -1.5rem;
+}
+
+.sd-quote-text {
+    font-size: 1.8rem;
+    font-style: italic;
+    color: #fff;
+    margin-bottom: 2.5rem;
+    line-height: 1.6;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 300;
+}
+
+.sd-quote-author {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.sd-quote-author strong {
+    font-size: 1.2rem;
+    color: #d4af37;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    font-weight: 700;
+}
+
+.sd-quote-author span {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    margin-top: 0.5rem;
+    font-family: 'Inter', sans-serif;
+}
+
+/* Booking/Form Section */
+.sd-booking {
+    padding: 7rem 1rem;
+}
+
+.glass-card-dark {
+    background: rgba(8, 14, 28, 0.7);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(212, 175, 55, 0.2);
+    border-radius: 24px;
+    padding: 5rem 4rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.6), inset 0 0 30px rgba(212, 175, 55, 0.05);
+}
+
+.sd-booking-info h2 {
+    font-size: 3rem;
+    margin-bottom: 1.5rem;
+    font-family: 'Montserrat', sans-serif;
+    line-height: 1.2;
+}
+
+.sd-booking-info p {
+    color: var(--text-muted);
+    font-size: 1.15rem;
+    margin-bottom: 2.5rem;
+    line-height: 1.7;
+}
+
+.sd-perks {
+    list-style: none;
+    padding: 0;
+}
+
+.sd-perks li {
+    font-size: 1.1rem;
+    color: #fff;
+    margin-bottom: 1.2rem;
+    display: flex;
+    align-items: center;
+    font-family: 'Inter', sans-serif;
+}
+
+.sd-form .bo-form-group {
+    margin-bottom: 1.8rem;
+}
+
+.sd-form label {
+    display: block;
+    margin-bottom: 0.7rem;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    font-weight: 600;
+}
+
+.sd-form .bo-input {
+    width: 100%;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    padding: 16px 20px;
+    border-radius: 12px;
+    color: #fff;
+    font-family: 'Inter', sans-serif;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.sd-form .bo-input:focus {
+    border-color: #d4af37;
+    outline: none;
+    background: rgba(255, 255, 255, 0.08);
+    box-shadow: 0 0 15px rgba(212, 175, 55, 0.25);
+}
+
+.bo-form-group-row {
+    display: flex;
+    gap: 2rem;
+}
+
+.w-50 {
+    width: 50%;
+}
+
+.submit-btn {
+    width: 100%;
+    margin-top: 1.5rem;
+    padding: 18px;
+    font-size: 1.1rem;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+    .glass-card-dark {
+        padding: 4rem 3rem;
+        gap: 4rem;
+    }
+}
+
+@media (max-width: 992px) {
+    .glass-card-dark {
+        grid-template-columns: 1fr;
+        padding: 3.5rem 2rem;
+        gap: 3.5rem;
+    }
+
+    .sd-hero-content h1 {
+        font-size: 3.2rem;
+    }
+
+    .sd-quote-text {
+        font-size: 1.5rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .sd-hero-content h1 {
+        font-size: 2.5rem;
+    }
+
+    .sd-hero-content p {
+        font-size: 1rem;
+    }
+
+    .bo-form-group-row {
+        flex-direction: column;
+        gap: 0;
+    }
+
+    .w-50 {
+        width: 100%;
+    }
+
+    .glass-card-dark {
+        padding: 2.5rem 1.5rem;
+    }
+
+    .sd-quote-text {
+        font-size: 1.3rem;
+    }
+}
+
+/* Card Interactive Hover applied to existing cards in ConciergeSupport.jsx */
+.cs-card-interactive {
+    cursor: pointer;
+    display: block;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.cs-card-interactive:hover {
+    border-color: rgba(212, 175, 55, 0.6);
+    box-shadow: 0 15px 35px rgba(212, 175, 55, 0.25), inset 0 0 20px rgba(212, 175, 55, 0.1);
+    transform: translateY(-10px);
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.08) 0%, rgba(212, 175, 55, 0.05) 100%);
+}
+
+.cs-card-interactive .cs-card-icon {
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.cs-card-interactive:hover .cs-card-icon {
+    transform: scale(1.25);
+    filter: drop-shadow(0 0 10px rgba(212, 175, 55, 0.6));
+}
+
+.cs-btn {
+    transition: all 0.3s ease;
+}
+
+.cs-card-interactive:hover .cs-btn {
+    background: rgba(212, 175, 55, 0.2);
+    border-color: #d4af37;
+    color: #d4af37;
+    box-shadow: 0 0 15px rgba(212, 175, 55, 0.3);
+}

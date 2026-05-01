@@ -1,0 +1,200 @@
+/* About Page Styling */
+
+.about-page {
+    min-height: 100vh;
+    background: transparent; /* Allows Venom background to bleed through */
+    color: var(--text-primary);
+    overflow-x: hidden;
+}
+
+/* About Hero Section */
+.about-hero {
+    position: relative;
+    width: 100%;
+    min-height: 60vh;
+    background-image: url('https://images.unsplash.com/photo-1549646583-04e43fec12ce?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+    background-size: cover;
+    background-position: center 70%;
+    background-attachment: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 80px;
+}
+
+.about-hero-overlay {
+    position: absolute;
+    inset: 0;
+    /* Gradient fading into transparent to reveal the Venom background below the hero */
+    background: linear-gradient(to bottom, rgba(8, 14, 28, 0.7) 0%, rgba(8, 14, 28, 0.9) 80%, transparent 100%);
+}
+
+.about-hero-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    max-width: 900px;
+    padding: 0 20px;
+}
+
+.about-hero-content h1 {
+    font-size: 4rem;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 800;
+    margin-bottom: 1.5rem;
+    line-height: 1.2;
+    text-shadow: 0 10px 30px rgba(0,0,0,0.8);
+}
+
+.about-hero-content p {
+    font-size: 1.4rem;
+    color: var(--text-secondary);
+    letter-spacing: 2px;
+    font-weight: 300;
+    text-transform: uppercase;
+    text-shadow: 0 5px 15px rgba(0,0,0,0.8);
+}
+
+/* Sections General */
+.about-section {
+    padding: 8rem 0;
+    position: relative;
+}
+
+/* Story Section */
+.story-section p {
+    font-size: 1.1rem;
+    line-height: 1.8;
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    border-top: 1px solid rgba(212, 175, 55, 0.15);
+    padding-top: 2rem;
+}
+
+.stat-item h3 {
+    font-size: 2.5rem;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+
+.stat-item p {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.image-glass-frame {
+    position: relative;
+    padding: 20px;
+}
+
+.image-glass-frame img {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 12px;
+}
+
+.image-glass-frame .frame-border {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    border: 2px solid var(--accent-muted);
+    border-radius: 16px;
+    transform: translate(-15px, 15px);
+    z-index: 1;
+    transition: transform 0.5s ease;
+}
+
+.image-glass-frame:hover .frame-border {
+    transform: translate(0, 0);
+    border-color: var(--accent);
+}
+
+/* Experience Section */
+.experience-section {
+    background: rgba(8, 14, 28, 0.6);
+    backdrop-filter: blur(10px);
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.experience-card {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 20px;
+    padding: 3rem 2rem;
+    height: 100%;
+    transition: all 0.4s ease;
+}
+
+.experience-card:hover {
+    background: rgba(212, 175, 55, 0.03);
+    border-color: rgba(212, 175, 55, 0.3);
+    transform: translateY(-10px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4), 0 0 20px rgba(212, 175, 55, 0.1);
+}
+
+.icon-circle {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, rgba(212, 175, 55, 0.2), rgba(212, 175, 55, 0.05));
+    border: 1px solid rgba(212, 175, 55, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 2rem;
+    color: var(--accent);
+    font-size: 2rem;
+    transition: all 0.4s ease;
+}
+
+.experience-card:hover .icon-circle {
+    background: linear-gradient(135deg, var(--accent), var(--accent-muted));
+    color: #050608;
+    transform: scale(1.1) rotate(5deg);
+    box-shadow: 0 0 20px rgba(212, 175, 55, 0.4);
+}
+
+.experience-card h4 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    letter-spacing: 0.5px;
+}
+
+/* Responsive Overrides */
+@media (max-width: 992px) {
+    .about-hero-content h1 {
+        font-size: 3rem;
+    }
+    .stats-grid {
+        gap: 1rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .about-hero-content h1 {
+        font-size: 2.2rem;
+    }
+    .about-hero-content p {
+        font-size: 1rem;
+    }
+    .stats-grid {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+    .image-glass-frame .frame-border {
+        transform: translate(-10px, 10px);
+    }
+}
