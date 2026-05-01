@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Login | Luxury Car Showroom</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+
+<style>
+body {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background:
+    url("https://mir-s3-cdn-cf.behance.net/project_modules/source/46f37945885079.584030cfd603d.gif");
+
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  font-family: 'Poppins', sans-serif;
+  color: #fff;
+  overflow: hidden;
+}
+
+
+/* watermark */
+body::after{
+  content:"RR";
+  position:absolute;
+  font-size:260px;
+  font-weight:600;
+  color:rgba(255,255,255,0.02);
+  letter-spacing:20px;
+  z-index:0;
+}
+
+.card{
+  width:390px;
+  padding:40px;
+  background:linear-gradient(180deg,rgba(255,255,255,0.08),rgba(255,255,255,0.03));
+  backdrop-filter:blur(22px);
+  border-radius:22px;
+  border:1px solid rgba(212,175,55,0.3);
+  box-shadow:0 40px 80px rgba(0,0,0,0.9);
+  z-index:1;
+  animation:fadeUp 1s ease;
+}
+
+h3{
+  text-align:center;
+  font-weight:300;
+  letter-spacing:3px;
+  color:#d4af37;
+  margin-bottom:30px;
+}
+
+/* floating input */
+.form-floating>.form-control{
+  background:rgba(0,0,0,0.6);
+  border:1px solid rgba(212,175,55,0.25);
+  color:#fff;
+  border-radius:14px;
+}
+
+.form-floating label{
+  color:#aaa;
+}
+
+.form-control:focus{
+  border-color:#d4af37;
+  box-shadow:0 0 0 0.15rem rgba(212,175,55,0.3);
+  background:rgba(0,0,0,0.8);
+}
+
+/* password eye */
+.eye{
+  position:absolute;
+  top:50%;
+  right:15px;
+  transform:translateY(-50%);
+  cursor:pointer;
+  color:#d4af37;
+}
+
+/* button */
+.btn-gold{
+  background:linear-gradient(135deg,#d4af37,#b8962e);
+  border:none;
+  color:#000;
+  font-weight:500;
+  letter-spacing:2px;
+  border-radius:30px;
+  padding:12px;
+  text-transform:uppercase;
+  transition:0.3s;
+  box-shadow:0 12px 30px rgba(212,175,55,0.4);
+}
+
+.btn-gold:hover{
+  transform:translateY(-2px);
+  box-shadow:0 18px 40px rgba(212,175,55,0.6);
+}
+
+p{
+  text-align:center;
+  margin-top:18px;
+  font-size:0.9rem;
+}
+
+a{
+  color:#d4af37;
+  text-decoration:none;
+}
+
+a:hover{
+  text-decoration:underline;
+}
+
+@keyframes fadeUp{
+  from{opacity:0; transform:translateY(25px);}
+  to{opacity:1; transform:translateY(0);}
+}
+</style>
+</head>
+
+<body>
+
+<div class="card">
+  <h3>Member Login</h3>
+
+  <div class="form-floating mb-3">
+    <input type="email" class="form-control" id="email" placeholder="Email">
+    <label>Email Address</label>
+  </div>
+
+  <div class="form-floating mb-3 position-relative">
+    <input type="password" class="form-control" id="password" placeholder="Password">
+    <label>Password</label>
+    <i class="bi bi-eye-fill eye" onclick="togglePassword()"></i>
+  </div>
+
+  <button class="btn btn-gold w-100" onclick="login()">Login</button>
+
+  <p>New here? <a href="signup.html">Create Account</a></p>
+</div>
+
+<script>
+function togglePassword(){
+  const p=document.getElementById("password");
+  p.type = p.type==="password" ? "text" : "password";
+}
+function togglePassword(){
+  const p=document.getElementById("password");
+  p.type = p.type==="password" ? "text" : "password";
+}
+
+function login(){
+  const userEmail = email.value;
+  const userPass = password.value;
+
+  if(!userEmail || !userPass){
+    alert("Please fill all fields");
+    return;
+  }
+
+  const admin = JSON.parse(localStorage.getItem("adminAccount"));
+
+  // ✅ ADMIN LOGIN
+  if(admin && userEmail === admin.email && userPass === admin.password){
+    localStorage.setItem("adminLoggedIn","true");
+    document.body.style.opacity="0";
+    setTimeout(()=>window.location.href="admin.html",500);
+  } 
+  // ✅ NORMAL USER LOGIN
+  else {
+    localStorage.setItem("loggedIn","true");
+    document.body.style.opacity="0";
+    setTimeout(()=>window.location.href="index.html",500);
+  }
+}
+
+</script>
+
+</body>
+</html>

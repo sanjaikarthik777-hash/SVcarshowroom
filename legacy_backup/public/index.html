@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>CAR Showroom Management </title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- Bootstrap -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<!-- Google Font -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+body{
+    font-family:'Poppins',sans-serif;
+    background: linear-gradient(
+  160deg,
+  #08181E 0%,
+  #1B3E4C 18%,
+  #5FA6BB 35%,
+  #F4FDFF 45%,
+  #F4FDFF 55%,
+  #5FA6BB 65%,
+  #1B3E4C 82%,
+  #08181E 100%
+);
+
+@keyframes shine {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+    background-attachment:fixed;
+    color:#fff;
+}
+.navbar{ background:rgba(0,0,0,0.7); backdrop-filter:blur(10px); }
+.navbar-brand,.nav-link{color:#fff!important;}
+.nav-link:hover{color:#ddd!important;}
+/* Hero */
+.hero{ padding:140px 20px; text-align:center; }
+.hero h2{font-size:3rem;font-weight:600;font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;}
+/* Cards */
+.card{ background:rgba(255,255,255,0.12); backdrop-filter:blur(12px); border:1px solid rgba(255,255,255,0.15); border-radius:18px; box-shadow:0 20px 40px rgba(0,0,0,0.4); }
+.carousel-item img{ height:220px; object-fit:cover; }
+.price{ font-size:1.2rem; font-weight:600; color:#ffd369; }
+.btn-360{ background:#000; color:#fff; border-radius:30px; padding:6px 18px; }
+.btn-360:hover{background:#333;}
+footer{ background:rgba(0,0,0,0.7); text-align:center; padding:20px; margin-top:60px; color:#ccc; }
+/* Chatbox */
+#chatbox{ position:fixed; bottom:20px; right:20px; width:300px; background:#111; border-radius:12px; padding:10px; display:none; z-index:1000; }
+#chatArea{ height:200px; overflow-y:auto; color:#fff; margin-top:6px; }
+/* Test Drive Modal */
+#testDriveModal{ display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.7); justify-content:center; align-items:center; z-index:2000; }
+#testDriveModal div{ background:#222; padding:20px; border-radius:12px; width:320px; position:relative; }
+#testDriveModal span{ position:absolute; top:10px; right:15px; cursor:pointer; color:#fff; font-size:18px; }
+#testDriveModal h5{ color:#fff; }
+#carNameTD{ color:#ffd369; font-weight:bold; }
+/* ===== AESTHETIC NAVBAR ===== */
+.navbar {
+  background: rgba(10, 15, 20, 0.55);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+  transition: all 0.4s ease;
+}
+
+.navbar-brand {
+  font-size: 1.6rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+  color: #279ede !important;
+  text-shadow: 0 0 10px rgba(5, 59, 124, 0.6);
+}
+
+.navbar-nav .nav-link {
+  position: relative;
+  color: #ffffff !important;
+  font-weight: 400;
+  margin-left: 18px;
+  transition: all 0.3s ease;
+}
+
+
+
+.navbar-nav .nav-link:hover {
+  color: #ffd369 !important;
+  text-shadow: 0 0 8px rgba(255, 211, 105, 0.6);
+}
+
+/* Navbar toggler */
+.navbar-toggler {
+  border: none;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+}
+
+.navbar-toggler-icon {
+  filter: invert(1);
+}
+@keyframes glow {
+  0% { text-shadow: 0 0 6px #0a8950; }
+  50% { text-shadow: 0 0 14px #ff9f1c; }
+  100% { text-shadow: 0 0 6px #ffd369; }
+}
+
+/* ================================
+   ROLLS-ROYCE NAVBAR – QUIET LUXURY
+================================ */
+
+/* Base Navbar */
+.navbar {
+  padding: 22px 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.88),
+    rgba(5, 5, 5, 0.55)
+  );
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border-bottom: 1px solid rgba(212, 175, 55, 0.18);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.85);
+  transition: all 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+}
+/* ACTIVE underline (fix mismatch) */
+.navbar-nav .nav-link.active::after {
+  width: 100%;
+  left: 0;
+  transform: none;
+  background: #d4af37;
+}
+
+/* Prevent dropdown toggle shifting underline */
+.navbar-nav .dropdown-toggle::after {
+  border: none;
+}
+
+
+/* On Scroll – tighter & darker */
+.navbar.scrolled {
+  padding: 10px 0;
+  background: rgba(0, 0, 0, 0.96);
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.95);
+}
+
+/* Brand */
+.navbar-brand {
+  font-size: 1.75rem;
+  font-weight: 500;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #d4af37 !important; /* Rolls Gold */
+}
+
+/* Elegant gold underline */
+.navbar-brand::after {
+  content: "";
+  display: block;
+  width: 38%;
+  height: 2px;
+  margin-top: 4px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    #d4af37,
+    transparent
+  );
+}
+
+/* Nav links */
+.navbar-nav .nav-link {
+  color: #eaeaea !important;
+  font-weight: 300;
+  letter-spacing: 1.2px;
+  margin-left: 26px;
+  text-transform: uppercase;
+  position: relative;
+  transition: color 0.35s ease;
+}
+
+/* Gold reveal hover */
+.navbar-nav .nav-link::after {
+  content: "";
+  position: absolute;
+  bottom: -8px;
+  left: 0;
+  width: 0;
+  height: 1.5px;
+  background: #d4af37;
+  transition: width 0.4s ease;
+}
+
+.navbar-nav .nav-link:hover::after {
+  width: 100%;
+}
+
+.navbar-nav .nav-link:hover {
+  color: #d4af37 !important;
+}
+
+/* Toggler */
+.navbar-toggler {
+  border: none;
+  background: rgba(212, 175, 55, 0.12);
+  border-radius: 10px;
+}
+
+.navbar-toggler-icon {
+  filter: invert(1);
+}
+/* ============================
+   FINAL NAVBAR UNDERLINE FIX
+============================ */
+
+/* Base underline */
+.navbar-nav .nav-link {
+  position: relative;
+}
+
+.navbar-nav .nav-link::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -8px;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #d4af37, #ffb703);
+  transform: translateX(-50%);
+  transition: width 0.35s ease;
+}
+
+/* Hover underline */
+.navbar-nav .nav-link:hover::after {
+  width: 100%;
+}
+
+/* Active underline (VERY IMPORTANT) */
+.navbar-nav .nav-link.active::after {
+  width: 100%;
+}
+
+/* Fix Bootstrap dropdown arrow conflict */
+.navbar-nav .dropdown-toggle::after {
+  border: none !important;
+}
+
+ .rr-logout{
+    color:#d4af37 !important;
+    font-weight:400;
+    letter-spacing:1.2px;
+    position:relative;
+  }
+
+  .rr-logout::after{
+    content:"";
+    position:absolute;
+    left:0;
+    bottom:-6px;
+    width:0;
+    height:1px;
+    background:#d4af37;
+    transition:0.4s;
+  }
+
+  .rr-logout:hover::after{
+    width:100%;
+  }
+
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg fixed-top">
+  <div class="container">
+    <a class="navbar-brand fw-bold" href="#">CAR SHOWROOM</a>
+    <button class="navbar-toggler bg-light" data-bs-toggle="collapse" data-bs-target="#menu">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="menu">
+      <ul class="navbar-nav ms-auto">
+  <li class="nav-item dropdown">
+  <a class="nav-link dropdown-toggle active"
+     href="#services"
+     role="button"
+     data-bs-toggle="dropdown"
+     aria-expanded="false">
+    Services
+  </a>
+
+  <ul class="dropdown-menu rr-dropdown">
+    <li><a class="dropdown-item" href="#">Premium Sales</a></li>
+    <li><a class="dropdown-item" href="#">Bespoke Orders</a></li>
+    <li><a class="dropdown-item" href="#">Concierge Support</a></li>
+  </ul>
+</li>
+
+
+  <li class="nav-item"><a class="nav-link" href="#cars">CARS</a></li>
+  <li class="nav-item"><a class="nav-link" href="#">About</a></li>
+  <li class="nav-item"><a class="nav-link" href="#footer">Contact</a></li>
+  <li class="nav-item"><a class="nav-link" href="#" onclick="toggleChatbox()">Chatbox</a></li>
+  <li class="nav-item" id="adminNav" style="display:none;">
+  <a class="nav-link d-flex align-items-center gap-2" href="admin.html">
+    <span id="adminName"></span>
+    <span class="badge bg-warning text-dark">ADMIN</span>
+  </a>
+</li>
+
+
+
+<li class="nav-item">
+  <a class="nav-link" href="signup.html">Sign Up</a>
+</li>
+<li class="nav-item">
+  <a class="nav-link" href="#" onclick="logout()">Logout</a>
+</li>
+
+</ul>
+
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+<h1 style="color: black;">CAR SHOWROOM Management</h1>
+  <p style="color: black;">Luxury, performance, electric, and premium vehicles with key features include tracking.</p>
+</body>
+</section>
+
+<!-- OUR CARS -->
+<section class="container" id="cars">
+<h1 class="text-center mb-4" style="color: black;" > FAST AND FURIOUS CARS </h1>
+<div class="row g-4">
+
+<!-- CAR TEMPLATE: Repeat for 10 cars -->
+<div class="col-md-4">
+  <div class="card">
+    <div id="🐎BULL 1" class="carousel slide" data-bs-ride="carousel" data-bs-interval="1000">
+        <div class="carousel-inner">
+        <div class="carousel-item active"><img src="https://images.unsplash.com/photo-1614026480209-cd9934144671?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8Ym13JTIwbTR8ZW58MHx8MHx8fDA%3D" class="w-100"></div>
+        <div class="carousel-item"><img src="https://images.unsplash.com/flagged/photo-1553505192-acca7d4509be?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fGJtdyUyMG00fGVufDB8fDB8fHww" class="w-100"></div>
+        <div class="carousel-item"><img src="https://images.unsplash.com/photo-1681856447108-4cc76fff51c2?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjB8fEJNVyUyME00fGVufDB8fDB8fHww" class="w-100"></div>
+        <div class="carousel-item"><img src="https://images.unsplash.com/photo-1612545667889-b061512d0dfa?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTR8fEJNVyUyME00fGVufDB8fDB8fHww" class="w-100"></div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h5>BMW M4</h5>
+      <p>The BMW M4 is a high-performance luxury sports coupe designed for drivers who demand power, precision, and comfort. It features a turbocharged engine, aggressive styling, and modern safety technologies.</p>
+      <p class="price">$72,000</p>
+      <button class="btn btn-360 mt-2" onclick="openTestDriveForm('BMW M4')">Book Test Drive</button>
+    </div>
+    
+    
+
+  </div>
+</div>
+
+<div class="col-md-4">
+  <div class="card">
+    <div id="🐎BULL 2" class="carousel slide" data-bs-ride="carousel" data-bs-interval="1000">
+
+      <div class="carousel-inner">
+        <div class="carousel-item active"><img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70" class="w-100"></div>
+        <div class="carousel-item"><img src="https://images.unsplash.com/photo-1493238792000-8113da705763" class="w-100"></div>
+        <div class="carousel-item"><img src="https://images.unsplash.com/photo-1604705528621-81b2755a320b?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTV8fEF1ZGklMjBSOHxlbnwwfHwwfHx8MA%3D%3D" class="w-100"></div>
+        <div class="carousel-item"><img src="https://images.unsplash.com/photo-1610880846497-7257b23f6138?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8QXVkaSUyMFI4fGVufDB8fDB8fHww" class="w-100"></div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h5>Audi R8</h5>
+      <p>The Audi R8 is a premium supercar combining luxury with extreme performance, featuring a V10 engine and advanced Quattro all-wheel drive system.</p>
+      <p class="price">$142,000</p>
+      <button class="btn btn-360 mt-2" onclick="openTestDriveForm('Audi R8')">Book Test Drive</button>
+    </div>
+  </div>
+</div>
+
+<div class="col-md-4">
+  <div class="card">
+    <div id="🐎BULL 3" class="carousel slide" data-bs-ride="carousel" data-bs-interval="1000">
+
+      <div class="carousel-inner">
+        <div class="carousel-item active"><img src="https://images.unsplash.com/photo-1614200187524-dc4b892acf16" class="w-100"></div>
+        <div class="carousel-item"><img src="https://images.unsplash.com/photo-1603386329225-868f9b1ee6c9" class="w-100"></div>
+        <div class="carousel-item"><img src="https://media.istockphoto.com/id/170450723/photo/a-silver-sports-car-on-black-tile-floor.webp?a=1&b=1&s=612x612&w=0&k=20&c=rW6PpWLnzzT0C8LH9BeDr-t4cAiKXVUyZCJ79KUxF_8=" class="w-100"></div>
+        <div class="carousel-item"><img src="https://images.unsplash.com/photo-1590216255837-24412b004996?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8TWVyY2VkZXMtQmVuenxlbnwwfHwwfHx8MA%3D%3D" class="w-100"></div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h5>Mercedes-Benz AMG</h5>
+      <p>Mercedes-Benz AMG combines luxury with high-performance engineering, hand-built engines, and advanced safety features.</p>
+      <p class="price">$95,000</p>
+      <button class="btn btn-360 mt-2" onclick="openTestDriveForm('Mercedes-Benz AMG')">Book Test Drive</button>
+    </div>
+  </div>
+</div>
+
+<div class="col-md-4">
+  <div class="card">
+    <div id="🐎BULL 4" class="carousel slide" data-bs-ride="carousel" data-bs-interval="1000">
+
+      <div class="carousel-inner">
+        <div class="carousel-item active"><img src="https://images.unsplash.com/photo-1519245659620-e859806a8d3b?w=600" class="w-100"></div>
+        <div class="carousel-item"><img src="https://images.unsplash.com/photo-1511919884226-fd3cad34687c?w=600" class="w-100"></div>
+        <div class="carousel-item"><img src="https://images.unsplash.com/photo-1570294646112-27ce4f174e38?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8TGFtYm9yZ2hpbml8ZW58MHx8MHx8fDA%3D" class="w-100"></div>
+        <div class="carousel-item"><img src="https://images.unsplash.com/photo-1621285853634-713b8dd6b5fd?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTl8fExhbWJvcmdoaW5pfGVufDB8fDB8fHww" class="w-100"></div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h5>Lamborghini Huracán</h5>
+      <p>The Lamborghini Huracán is an Italian supercar with a V10 engine, aggressive styling, and driver-focused cockpit.</p>
+      <p class="price">$210,000</p>
+      <button class="btn btn-360 mt-2" onclick="openTestDriveForm('Lamborghini Huracán')">Book Test Drive</button>
+    </div>
+  </div>
+</div>
+
+<div class="col-md-4">
+  <div class="card">
+    <div id="🐎BULL 5" class="carousel slide" data-bs-ride="carousel" data-bs-interval="1000">
+
+      <div class="carousel-inner">
+        <div class="carousel-item active"><img src="https://images.unsplash.com/photo-1593353798398-6024b7444bb6?w=600" class="w-100"></div>
+        <div class="carousel-item"><img src="https://images.unsplash.com/photo-1634673970798-a15ae56f6c65?w=600" class="w-100"></div>
+        <div class="carousel-item"><img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="w-100"></div>
+        <div class="carousel-item"><img src="https://images.unsplash.com/photo-1732624696535-68022a5b84dc?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MzF8fFBvcnNjaGV8ZW58MHx8MHx8fDA%3D" class="w-100"></div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h5>Porsche 911</h5>
+      <p>The Porsche 911 is a legendary sports car known for its timeless design and exceptional driving performance, offering excellent balance and road grip.</p>
+      <p class="price">$120,000</p>
+      <button class="btn btn-360 mt-2" onclick="openTestDriveForm('Porsche 911')">Book Test Drive</button>
+    </div>
+  </div>
+</div>
+
+<div class="col-md-4">
+  <div class="card">
+    <div id="🐎BULL 6" class="carousel slide" data-bs-ride="carousel" data-bs-interval="1000">
+
+      <div class="carousel-inner">
+        <div class="carousel-item active"><img src="https://images.unsplash.com/photo-1603386329225-868f9b1ee6c9" class="w-100"></div>
+        <div class="carousel-item"><img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70" class="w-100"></div>
+        <div class="carousel-item"><img src="https://images.unsplash.com/photo-1690235709293-6de0ba349eab?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTV8fEZvcmQlMjBNdXN0YW5nfGVufDB8fDB8fHww" class="w-100"></div>
+        <div class="carousel-item"><img src="https://images.unsplash.com/photo-1547744152-14d985cb937f?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8Rm9yZCUyME11c3Rhbmd8ZW58MHx8MHx8fDA%3D" class="w-100"></div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h5>Ford Mustang GT</h5>
+      <p>Classic American muscle car with a powerful V8 engine, modern infotainment, and iconic design.</p>
+      <p class="price">$58,000</p>
+      <button class="btn btn-360 mt-2" onclick="openTestDriveForm('Ford Mustang GT')">Book Test Drive</button>
+    </div>
+  </div>
+</div>
+
+<div class="col-md-4">
+  <div class="card">
+    <div id="🐎BULL 7" class="carousel slide" data-bs-ride="carousel" data-bs-interval="1000">
+
+      <div class="carousel-inner">
+        <div class="carousel-item active"><img src="https://images.unsplash.com/photo-1619767886558-efdc259cde1a" class="w-100"></div>
+        <div class="carousel-item"><img src="https://images.unsplash.com/photo-1553440569-bcc63803a83d" class="w-100"></div>
+        <div class="carousel-item"><img src="https://images.unsplash.com/photo-1615769516664-ca7302760b23?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8Q2hldnJvbGV0JTIwQ2FtYXJvfGVufDB8fDB8fHww" class="w-100"></div>
+        <div class="carousel-item"><img src="https://images.unsplash.com/photo-1562911791-472321d62247?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8Q2hldnJvbGV0JTIwQ2FtYXJvfGVufDB8fDB8fHww" class="w-100"></div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h5>Chevrolet Camaro</h5>
+      <p>Modern sports car with powerful engines, fast acceleration, and aggressive styling.</p>
+      <p class="price">$52,000</p>
+      <button class="btn btn-360 mt-2" onclick="openTestDriveForm('Chevrolet Camaro')">Book Test Drive</button>
+    </div>
+  </div>
+</div>
+
+<div class="col-md-4">
+  <div class="card">
+    <div id="🐎BULL 8" class="carousel slide" data-bs-ride="carousel" data-bs-interval="1000">
+
+      <div class="carousel-inner">
+        <div class="carousel-item active"><img src="https://images.unsplash.com/photo-1614200187524-dc4b892acf16" class="w-100"></div>
+        <div class="carousel-item"><img src="https://images.unsplash.com/photo-1605559424843-9e4c228bf1c2" class="w-100"></div>
+        <div class="carousel-item"><img src="https://images.unsplash.com/photo-1617788138017-80ad40651399?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTF8fFRlc2xhfGVufDB8fDB8fHww" class="w-100"></div>
+        <div class="carousel-item"><img src="https://images.unsplash.com/photo-1620891549027-942fdc95d3f5?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8VGVzbGF8ZW58MHx8MHx8fDA%3D" class="w-100"></div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h5>Tesla Model S</h5>
+      <p>Luxury electric sedan with instant acceleration, autopilot, and minimalist interior.</p>
+      <p class="price">$89,000</p>
+      <button class="btn btn-360 mt-2" onclick="openTestDriveForm('Tesla Model S')">Book Test Drive</button>
+    </div>
+  </div>
+</div>
+
+<div class="col-md-4">
+  <div class="card">
+    <div id="🐎BULL 9" class="carousel slide" data-bs-ride="carousel" data-bs-interval="1000">
+
+      <div class="carousel-inner">
+        <div class="carousel-item active"><img src="https://images.unsplash.com/photo-1600016326108-40b24ee22cd3?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bWluaSUyMGNvb3BlcnxlbnwwfHwwfHx8MA%3D%3D" class="w-100"></div>
+        <div class="carousel-item"><img src="https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8YmVuenxlbnwwfHwwfHx8MA%3D%3D" class="w-100"></div>
+        <div class="carousel-item"><img src="https://images.unsplash.com/photo-1679506640602-0144b3bb5053?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8UmFuZ2UlMjBSb3ZlciUyMFNwb3J0fGVufDB8fDB8fHww" class="w-100"></div>
+        <div class="carousel-item"><img src="https://images.unsplash.com/photo-1679506640617-e429ddc31e52?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTh8fFJhbmdlJTIwUm92ZXIlMjBTcG9ydHxlbnwwfHwwfHx8MA%3D%3D" class="w-100"></div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h5>Range Rover Sport</h5>
+      <p>Luxury SUV designed for comfort and performance, advanced off-road capabilities, and smooth city driving.</p>
+      <p class="price">$105,000</p>
+      <button class="btn btn-360 mt-2" onclick="openTestDriveForm('Range Rover Sport')">Book Test Drive</button>
+    </div>
+  </div>
+</div>
+
+<div class="col-md-4">
+  <div class="card">
+    <div id="🐎BULL 10" class="carousel slide" data-bs-ride="carousel" data-bs-interval="1000">
+
+      <div class="carousel-inner">
+        <div class="carousel-item active"><img src="https://images.unsplash.com/photo-1620547316190-289b3899e010?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTR8fHJhbmdlJTIwcm92ZXIlMjBzcG9ydHxlbnwwfHwwfHx8MA%3D%3D" class="w-100"></div>
+        <div class="carousel-item"><img src="https://images.unsplash.com/photo-1602013871952-8379f19a15f1?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fHJhbmdlJTIwcm92ZXIlMjBzcG9ydHxlbnwwfHwwfHx8MA%3D%3D" class="w-100"></div>
+        <div class="carousel-item"><img src="https://images.unsplash.com/photo-1611859266238-4b98091d9d9b?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8amFndWFyJTIwY2FyfGVufDB8fDB8fHww" class="w-100"></div>
+        <div class="carousel-item"><img src="https://images.unsplash.com/photo-1575496917055-f23c822796eb?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTV8fGphZ3VhciUyMGNhcnxlbnwwfHwwfHx8MA%3D%3D" class="w-100"></div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h5>Jaguar F-Type</h5>
+      <p>Luxury sports car with elegant British design, smooth acceleration, and advanced technology.</p>
+      <p class="price">$98,000</p>
+      <button class="btn btn-360 mt-2" onclick="openTestDriveForm('Jaguar F-Type')">Book Test Drive</button>
+    </div>
+  </div>
+</div>
+
+<div class="col-md-4">
+  <div class="card">
+    <div id="🐎BULL 11" class="carousel slide" data-bs-ride="carousel" data-bs-interval="1000">
+        <div class="carousel-inner">
+        <div class="carousel-item active"><img src="https://images.unsplash.com/photo-1566023888476-6f17e362fbb7?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8QnVnYXR0aSUyMENoaXJvbnxlbnwwfHwwfHx8MA%3D%3D" class="w-100"></div>
+        <div class="carousel-item"><img src="https://images.unsplash.com/photo-1544636331-e26879cd4d9b?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fEJ1Z2F0dGklMjBDaGlyb258ZW58MHx8MHx8fDA%3D" class="w-100"></div>
+        <div class="carousel-item"><img src="https://images.unsplash.com/photo-1635975229704-0a420e777a56?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8QlVHQVRUSSUyMENISVJPTnxlbnwwfHwwfHx8MA%3D%3D" class="w-100"></div>
+        <div class="carousel-item"><img src="https://images.unsplash.com/photo-1661198550180-2ba17bfe108c?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8QlVHQVRUSSUyMENISVJPTnxlbnwwfHwwfHx8MA%3D%3D" class="w-100"></div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h5>BUGATTI CHIRON</h5>
+      <p>The Chiron is considered a pinnacle of automotive engineering, combining immense, usable power with high-end luxury, and was produced in limited, exclusive, or bespoke, runs. </p>
+      <p class="price">\$3,000,000</p>
+      <button class="btn btn-360 mt-2" onclick="openTestDriveForm('BMW M4')">Book Test Drive</button>
+    </div>
+  </div>  
+</div>
+
+    <div class="col-md-4">
+  <div class="card">
+    <div id="🐎BULL 12" class="carousel slide" data-bs-ride="carousel" data-bs-interval="1000">
+        <div class="carousel-inner">
+        <div class="carousel-item active"><img src="https://images.unsplash.com/photo-1578564810934-c131250d3792?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bGFuZCUyMHJvdmVyfGVufDB8fDB8fHww" class="w-100"></div>
+        <div class="carousel-item"><img src="https://images.unsplash.com/photo-1607465511939-92cd96b8c3f5?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8bGFuZCUyMHJvdmVyfGVufDB8fDB8fHww" class="w-100"></div>
+        <div class="carousel-item"><img src="https://images.unsplash.com/photo-1624804269473-828dcc30a210?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8Uk9MTFMlMjBST1lDRXxlbnwwfHwwfHx8MA%3D%3D" class="w-100"></div>
+        <div class="carousel-item"><img src="https://images.unsplash.com/photo-1696233016084-30c8345d85ff?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8Uk9MTFMlMjBST1lDRXxlbnwwfHwwfHx8MA%3D%3D" class="w-100"></div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h5>ROLLS ROYCE</h5>
+      <p>Rolls-Royce Motor Cars, a British manufacturer owned by BMW, represents the pinnacle of bespoke luxury, with 2026 models typically ranging from roughly $350,000 to over $650,000 MSRP.</p>
+      <p class="price">$650,000</p>
+      <button class="btn btn-360 mt-2" onclick="openTestDriveForm('BMW M4')">Book Test Drive</button>
+    </div>
+  </div>  
+</div> 
+    
+
+  </div>
+</div>
+
+
+  </div>
+</div>
+
+
+</div>
+</section>
+
+<!-- CHATBOX -->
+<div id="chatbox">
+  <div style="display:flex;justify-content:space-between;color:#fff;">
+    <b>💬AI Chat</b>
+    <span onclick="closeChatbox()" style="cursor:pointer;">✖️</span>
+  </div>
+  <div id="chatArea"></div>
+  <input id="chatInput" type="text" placeholder="Ask me about cars..." style="width:100%;padding:8px;border-radius:8px;border:none;margin-top:6px;">
+  <button onclick="sendMessage()" class="btn btn-dark w-100 mt-2">Send</button>
+</div>
+
+<!-- TEST DRIVE FORM MODAL -->
+<div id="testDriveModal">
+  <div>
+    <span onclick="closeTestDriveForm()">✖</span>
+    <h5>Book Test Drive</h5>
+    <p id="carNameTD"></p>
+    <input type="text" id="tdName" placeholder="Your Name" class="form-control mb-2">
+    <input type="email" id="tdEmail" placeholder="Your Email" class="form-control mb-2">
+    <input type="tel" id="tdPhone" placeholder="Phone Number" class="form-control mb-2">
+    <input type="datetime-local" id="tdDateTime" class="form-control mb-2">
+    <button class="btn btn-360 w-100" onclick="submitTestDrive()">Submit</button>
+  </div>
+</div>
+
+<footer>© 2026 CAR Showroom Management | Academic Project | carshowroom@gmail.com | 9874561230
+</footer>
+
+<script>
+// Chatbox
+let chatTimer;
+function toggleChatbox(){ document.getElementById("chatbox").style.display="block"; startAutoClose(); }
+function closeChatbox(){ document.getElementById("chatbox").style.display="none"; clearTimeout(chatTimer); }
+function startAutoClose(){ clearTimeout(chatTimer); chatTimer=setTimeout(()=>{ document.getElementById("chatbox").style.display="none"; },15000000); }
+function sendMessage(){
+  const input=document.getElementById("chatInput");
+  const chat=document.getElementById("chatArea");
+  if(!input.value.trim()) return;
+  chat.innerHTML+=`<div><b>You:</b> ${input.value}</div>`;
+  startAutoClose();
+  fetch("http://localhost:3000/chat",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({message:input.value})})
+  .then(res=>res.json())
+  .then(data=>{ chat.innerHTML+=`<div><b>🤖:</b> ${data.reply}</div>`; chat.scrollTop=chat.scrollHeight; });
+  input.value="";
+}
+
+// Test Drive
+let selectedCar = '';
+function openTestDriveForm(carName){
+  selectedCar = carName;
+  document.getElementById("carNameTD").innerText = carName;
+  document.getElementById("testDriveModal").style.display = "flex";
+}
+function closeTestDriveForm(){ document.getElementById("testDriveModal").style.display = "none"; }
+function submitTestDrive(){
+  const name = document.getElementById("tdName").value.trim();
+  const email = document.getElementById("tdEmail").value.trim();
+  const phone = document.getElementById("tdPhone").value.trim();
+  const datetime = document.getElementById("tdDateTime").value;
+
+  if(!name || !email || !phone || !datetime){
+    alert("Please fill all fields!");
+    return;
+  }
+
+  // GET OLD BOOKINGS
+  let bookings = JSON.parse(localStorage.getItem("bookings")) || [];
+
+  // ADD NEW BOOKING
+  bookings.push({
+    car: selectedCar,
+    name,
+    email,
+    phone,
+    datetime,
+    status: "Pending"
+  });
+
+  // SAVE TO STORAGE
+  localStorage.setItem("bookings", JSON.stringify(bookings));
+
+  alert(`✅ Test Drive for ${selectedCar} booked successfully!`);
+
+  closeTestDriveForm();
+
+  // CLEAR FORM
+  document.getElementById("tdName").value = "";
+  document.getElementById("tdEmail").value = "";
+  document.getElementById("tdPhone").value = "";
+  document.getElementById("tdDateTime").value = "";
+}
+  
+</script>
+<script>
+  window.addEventListener("scroll", () => {
+    const navbar = document.querySelector(".navbar");
+    navbar.classList.toggle("scrolled", window.scrollY > 90);
+  });
+</script>
+<script>
+function logout(){
+  localStorage.removeItem("loggedIn");
+  document.body.style.opacity="0";
+  setTimeout(()=>{
+    window.location.href="login.html";
+  },500);
+}
+</script>
+
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+if(!localStorage.getItem("adminAccount")){
+  localStorage.setItem("adminAccount", JSON.stringify({
+    email: "admin@luxury.com",
+    password: "admin123"
+  }));
+}
+</script>
+<script>
+if(localStorage.getItem("adminLoggedIn") === "true"){
+  document.getElementById("adminNav").style.display = "block";
+}
+</script>
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  if(localStorage.getItem("adminLoggedIn") === "true"){
+    const adminNav = document.getElementById("adminNav");
+    if(adminNav){
+      adminNav.style.display = "block";
+    }
+  }
+});
+</script>
+<script>
+if(localStorage.getItem("adminLoggedIn") === "true"){
+  localStorage.setItem("adminName", "Vishmitha");
+}
+</script>
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const isAdmin = localStorage.getItem("adminLoggedIn") === "true";
+
+  if(isAdmin){
+    // show admin nav
+    const adminNav = document.getElementById("adminNav");
+    if(adminNav) adminNav.style.display = "block";
+
+    // set admin name
+    const name = localStorage.getItem("adminName") || "Admin";
+    const adminNameSpan = document.getElementById("adminName");
+    if(adminNameSpan) adminNameSpan.innerText = name;
+
+   
+  }
+});
+</script>
+
+
+
+</body>
+</html>
