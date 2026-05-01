@@ -3562,26 +3562,27 @@ a {
   }
 
   .navbar-collapse {
-    background: #050608 !important;
+    background: rgba(5, 6, 8, 0.99) !important;
+    backdrop-filter: blur(10px);
     position: fixed;
-    top: 62px; /* Adjusted for smaller navbar */
+    top: 62px;
     left: 0;
     right: 0;
     bottom: 0;
-    padding: 1.5rem !important; /* Minimized padding */
+    padding: 1.5rem !important;
     overflow-y: auto;
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    border-top: 1px solid rgba(212, 175, 55, 0.1);
     display: block !important;
     opacity: 0;
     visibility: hidden;
-    transform: translateY(-10px);
+    transform: translateX(100%); /* Slide in from right */
   }
 
   .navbar-collapse.show {
     opacity: 1;
     visibility: visible;
-    transform: translateY(0);
+    transform: translateX(0);
   }
 
   .navbar-nav {
@@ -3607,32 +3608,52 @@ a {
     padding: 8px 12px !important;
   }
 
-  /* Hamburger Icon Styling */
+  /* Hamburger Icon Styling — Perfected */
   .navbar-toggler {
     border: none !important;
     padding: 0 !important;
-    width: 32px;
-    height: 32px;
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    z-index: 1100;
+    box-shadow: none !important;
+    outline: none !important;
+    background: transparent !important;
   }
 
   .navbar-toggler-icon {
-    width: 20px;
-    height: 20px;
+    width: 22px;
+    height: 22px;
     background-image: none !important;
+    position: relative;
   }
 
   .navbar-toggler-icon::before,
   .navbar-toggler-icon::after {
-    width: 20px;
-    height: 1.5px;
+    content: '';
+    position: absolute;
+    left: 0;
+    width: 22px;
+    height: 2px;
     background-color: var(--accent);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 0 10px rgba(212, 175, 55, 0.3); /* Add visibility glow */
   }
 
   .navbar-toggler-icon::before { transform: translateY(-6px); }
   .navbar-toggler-icon::after { transform: translateY(6px); }
   
-  .navbar-toggler:not(.collapsed) .navbar-toggler-icon::before { transform: rotate(45deg); }
-  .navbar-toggler:not(.collapsed) .navbar-toggler-icon::after { transform: rotate(-45deg); }
+  /* Perfect X transformation */
+  .navbar-toggler:not(.collapsed) .navbar-toggler-icon::before {
+    transform: translateY(0) rotate(45deg);
+  }
+  
+  .navbar-toggler:not(.collapsed) .navbar-toggler-icon::after {
+    transform: translateY(0) rotate(-45deg);
+  }
 }
 
 /* General Layout Minimization */
