@@ -3551,133 +3551,172 @@ a {
 }
 
 /* ============================================================
-   GLOBAL MOBILE RESPONSIVENESS OVERRIDES
+   GLOBAL MOBILE RESPONSIVENESS OVERRIDES — PREMIUM EDITION
    ============================================================ */
 
-/* General Container & Spacing adjustments */
-@media (max-width: 768px) {
-  .admin-page-container {
-    padding: 1.5rem 1rem !important;
-  }
-  .admin-navbar {
-    padding: 0 1rem !important;
-  }
-  .admin-stats-grid {
-    grid-template-columns: 1fr !important;
-  }
-}
-
-/* Responsive Table Wrapper */
-.admin-table-wrap {
-  overflow-x: auto !important;
-  -webkit-overflow-scrolling: touch;
-}
-
-/* Admin Sidebar Off-canvas Logic */
-@media (max-width: 992px) {
-  .admin-sidebar {
-    position: fixed !important;
-    left: -280px !important;
-    top: 0 !important;
-    transition: left 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
-    z-index: 1000 !important;
-    box-shadow: 10px 0 30px rgba(0,0,0,0.5);
-    height: 100vh !important;
+/* Mobile Navbar Overrides */
+@media (max-width: 991px) {
+  .navbar {
+    padding: 15px 0 !important;
+    background: rgba(5, 6, 8, 0.98) !important;
   }
 
-  .admin-sidebar.open {
-    left: 0 !important;
-  }
-
-  .admin-sidebar-overlay {
+  .navbar-collapse {
+    background: #050608 !important; /* Solid background for readability */
     position: fixed;
-    inset: 0;
-    background: rgba(0, 0, 0, 0.7);
-    backdrop-filter: blur(4px);
-    z-index: 999;
-    animation: fadeIn 0.3s ease;
+    top: 72px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 2rem !important;
+    overflow-y: auto;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    display: block !important;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-20px);
   }
 
-  .admin-mobile-toggle {
-    display: flex !important;
+  .navbar-collapse.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+
+  .navbar-nav {
+    gap: 1rem;
+    text-align: center;
+  }
+
+  .nav-link {
+    font-size: 1.1rem !important;
+    margin: 0 !important;
+    padding: 12px 0 !important;
+  }
+
+  /* Hamburger Icon Styling */
+  .navbar-toggler {
+    border: none !important;
+    padding: 0 !important;
+    outline: none !important;
+    box-shadow: none !important;
+  }
+
+  .navbar-toggler-icon {
+    width: 24px;
+    height: 24px;
+    background-image: none !important;
+    position: relative;
+    display: flex;
     align-items: center;
     justify-content: center;
-    background: transparent;
-    border: 1px solid rgba(255,255,255,0.1);
-    color: var(--accent);
-    width: 40px;
-    height: 40px;
-    border-radius: 8px;
-    font-size: 1.5rem;
-    margin-right: 15px;
   }
 
-  .admin-sidebar-close {
-    display: block !important;
-    background: transparent;
-    border: none;
-    color: #fff;
-    font-size: 2rem;
+  .navbar-toggler-icon::before,
+  .navbar-toggler-icon::after {
+    content: '';
     position: absolute;
-    top: 15px;
-    right: 15px;
-    line-height: 1;
+    width: 24px;
+    height: 2px;
+    background-color: var(--accent);
+    transition: all 0.3s ease;
   }
 
-  .admin-brand {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  .navbar-toggler-icon::before { transform: translateY(-8px); }
+  .navbar-toggler-icon::after { transform: translateY(8px); }
+  
+  /* Create middle line */
+  .navbar-toggler:not(.collapsed) .navbar-toggler-icon {
+    background-color: transparent !important;
+  }
+  
+  .navbar-toggler:not(.collapsed) .navbar-toggler-icon::before {
+    transform: rotate(45deg);
+  }
+  
+  .navbar-toggler:not(.collapsed) .navbar-toggler-icon::after {
+    transform: rotate(-45deg);
+  }
+
+  /* Dropdowns on Mobile */
+  .rr-dropdown {
+    background: rgba(255, 255, 255, 0.03) !important;
+    border: none !important;
+    box-shadow: none !important;
+    margin-top: 0 !important;
+    padding: 10px !important;
+    position: static !important;
+    transform: none !important;
+    width: 100% !important;
+  }
+
+  .cars-mega-menu {
+    display: block !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    padding: 15px !important;
+    max-height: 400px;
+    overflow-y: auto;
+  }
+
+  .mega-menu-grid {
+    grid-template-columns: 1fr !important;
+    gap: 10px !important;
+  }
+
+  .mega-menu-item {
+    flex-direction: row !important;
+    align-items: center !important;
+    text-align: left !important;
+    padding: 10px !important;
+  }
+
+  .mega-menu-img-wrapper {
+    width: 80px !important;
+    margin-bottom: 0 !important;
+    margin-right: 15px !important;
   }
 }
 
-/* Initially hide these for desktop */
-.admin-mobile-toggle, .admin-sidebar-close {
-  display: none;
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-
-/* Hero Section Responsiveness */
+/* General Layout Fixes */
 @media (max-width: 768px) {
-  .hero-content {
-    padding-top: 100px !important;
-  }
   .hero-title {
-    font-size: 3.2rem !important;
+    font-size: 2.8rem !important;
+    line-height: 1.1 !important;
   }
+  
   .hero-subtitle {
-    font-size: 0.95rem !important;
-    padding: 0 10px;
+    font-size: 0.9rem !important;
+    margin-bottom: 2rem !important;
   }
-  .hero-stats-row {
-    flex-direction: column !important;
-    gap: 1.5rem !important;
-  }
-  .hero-stat-divider {
-    display: none !important;
-  }
-}
 
-/* Cars Grid fixes for very small screens */
-@media (max-width: 400px) {
   .cars-grid {
     grid-template-columns: 1fr !important;
+    padding: 0 10px !important;
   }
-  .navbar-brand {
-    font-size: 1.2rem !important;
+
+  .admin-page-container {
+    padding: 1.5rem 10px !important;
   }
 }
 
-/* Auth Card Responsiveness */
-@media (max-width: 480px) {
-  .auth-card {
-    width: 95% !important;
-    padding: 1.5rem !important;
-  }
+/* Fix horizontal scrolling issues */
+body, html {
+  overflow-x: hidden !important;
+  position: relative;
+  width: 100%;
+}
+
+.container {
+  overflow: hidden;
+}
+
+/* Table responsiveness */
+.admin-table-wrap {
+  margin: 0 -10px;
+  width: calc(100% + 20px);
+  border-radius: 0 !important;
 }
 
 

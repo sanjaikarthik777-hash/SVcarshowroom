@@ -10,6 +10,7 @@ export default function Navbar() {
     const navigate = useNavigate();
     const location = useLocation();
     const [scrolled, setScrolled] = useState(false);
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
 
     useEffect(() => {
         const handleScroll = () => {
@@ -19,28 +20,37 @@ export default function Navbar() {
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
 
+    const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
+    const closeMenu = () => setIsMenuOpen(false);
+
     const handleLogout = () => {
         logout();
+        closeMenu();
         navigate('/login');
     };
 
     return (
-        <nav className={`navbar navbar-expand-lg fixed-top ${scrolled ? 'scrolled' : ''}`}>
+        <nav className={`navbar navbar-expand-lg fixed-top ${scrolled ? 'scrolled' : ''} ${isMenuOpen ? 'menu-open' : ''}`}>
             <div className="container">
-                <Link className="navbar-brand fw-bold" to="/">SV</Link>
-                <button className="navbar-toggler bg-light" type="button" data-bs-toggle="collapse" data-bs-target="#menu">
+                <Link className="navbar-brand fw-bold" to="/" onClick={closeMenu}>SV</Link>
+                <button 
+                    className={`navbar-toggler ${isMenuOpen ? '' : 'collapsed'}`} 
+                    type="button" 
+                    onClick={toggleMenu}
+                    aria-expanded={isMenuOpen}
+                >
                     <span className="navbar-toggler-icon"></span>
                 </button>
-                <div className="collapse navbar-collapse" id="menu">
+                <div className={`collapse navbar-collapse ${isMenuOpen ? 'show' : ''}`} id="menu">
                     <ul className="navbar-nav ms-auto">
                         <li className="nav-item dropdown">
                             <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
                                 Services
                             </a>
                             <ul className="dropdown-menu rr-dropdown">
-                                <li><Link className="dropdown-item" to="/premium-sales">Premium Sales</Link></li>
-                                <li><Link className="dropdown-item" to="/bespoke-orders">Bespoke Orders</Link></li>
-                                <li><Link className="dropdown-item" to="/concierge-support">Concierge Support</Link></li>
+                                <li><Link className="dropdown-item" to="/premium-sales" onClick={closeMenu}>Premium Sales</Link></li>
+                                <li><Link className="dropdown-item" to="/bespoke-orders" onClick={closeMenu}>Bespoke Orders</Link></li>
+                                <li><Link className="dropdown-item" to="/concierge-support" onClick={closeMenu}>Concierge Support</Link></li>
                             </ul>
                         </li>
 
@@ -51,7 +61,7 @@ export default function Navbar() {
                             <div className="dropdown-menu rr-dropdown cars-mega-menu">
                                 <div className="mega-menu-grid">
                                     {Object.entries(carCategoriesData).map(([path, data]) => (
-                                        <Link key={path} className="dropdown-item mega-menu-item" to={`/cars/${path}`}>
+                                        <Link key={path} className="dropdown-item mega-menu-item" to={`/cars/${path}`} onClick={closeMenu}>
                                             <div className="mega-menu-img-wrapper">
                                                 <img src={data.heroImage} alt={data.title} />
                                             </div>
@@ -67,7 +77,7 @@ export default function Navbar() {
                             </a>
                             <div className="dropdown-menu rr-dropdown p-3" style={{ minWidth: '320px', borderTop: '3px solid var(--accent)' }}>
                                 <div className="d-flex flex-column gap-3">
-                                    <Link to="/finance/emi-calculator" className="dropdown-item d-flex align-items-start gap-3 p-2 rounded" style={{ whiteSpace: 'normal', transition: 'all 0.3s' }}>
+                                    <Link to="/finance/emi-calculator" className="dropdown-item d-flex align-items-start gap-3 p-2 rounded" style={{ whiteSpace: 'normal', transition: 'all 0.3s' }} onClick={closeMenu}>
                                         <div className="mt-1" style={{ color: 'var(--accent)' }}>
                                             <i className="bi bi-calculator fs-4"></i>
                                         </div>
@@ -76,7 +86,7 @@ export default function Navbar() {
                                             <p className="mb-0 text-muted" style={{ fontSize: '0.75rem', lineHeight: '1.4' }}>Calculate your monthly payments instantly.</p>
                                         </div>
                                     </Link>
-                                    <Link to="/finance/loan-services" className="dropdown-item d-flex align-items-start gap-3 p-2 rounded" style={{ whiteSpace: 'normal', transition: 'all 0.3s' }}>
+                                    <Link to="/finance/loan-services" className="dropdown-item d-flex align-items-start gap-3 p-2 rounded" style={{ whiteSpace: 'normal', transition: 'all 0.3s' }} onClick={closeMenu}>
                                         <div className="mt-1" style={{ color: 'var(--accent)' }}>
                                             <i className="bi bi-bank fs-4"></i>
                                         </div>
@@ -94,7 +104,7 @@ export default function Navbar() {
                             </a>
                             <div className="dropdown-menu rr-dropdown p-3" style={{ minWidth: '320px', borderTop: '3px solid var(--accent)' }}>
                                 <div className="d-flex flex-column gap-3">
-                                    <Link to="/about" className="dropdown-item d-flex align-items-start gap-3 p-2 rounded" style={{ whiteSpace: 'normal', transition: 'all 0.3s' }}>
+                                    <Link to="/about" className="dropdown-item d-flex align-items-start gap-3 p-2 rounded" style={{ whiteSpace: 'normal', transition: 'all 0.3s' }} onClick={closeMenu}>
                                         <div className="mt-1" style={{ color: 'var(--accent)' }}>
                                             <i className="bi bi-book fs-4"></i>
                                         </div>
@@ -103,7 +113,7 @@ export default function Navbar() {
                                             <p className="mb-0 text-muted" style={{ fontSize: '0.75rem', lineHeight: '1.4' }}>The legacy and vision behind our premier automotive collection.</p>
                                         </div>
                                     </Link>
-                                    <Link to="/dealerships" className="dropdown-item d-flex align-items-start gap-3 p-2 rounded" style={{ whiteSpace: 'normal', transition: 'all 0.3s' }}>
+                                    <Link to="/dealerships" className="dropdown-item d-flex align-items-start gap-3 p-2 rounded" style={{ whiteSpace: 'normal', transition: 'all 0.3s' }} onClick={closeMenu}>
                                         <div className="mt-1" style={{ color: 'var(--accent)' }}>
                                             <i className="bi bi-geo-alt fs-4"></i>
                                         </div>
@@ -112,7 +122,7 @@ export default function Navbar() {
                                             <p className="mb-0 text-muted" style={{ fontSize: '0.75rem', lineHeight: '1.4' }}>Find our exclusive luxury showrooms worldwide.</p>
                                         </div>
                                     </Link>
-                                    <Link to="/careers" className="dropdown-item d-flex align-items-start gap-3 p-2 rounded" style={{ whiteSpace: 'normal', transition: 'all 0.3s' }}>
+                                    <Link to="/careers" className="dropdown-item d-flex align-items-start gap-3 p-2 rounded" style={{ whiteSpace: 'normal', transition: 'all 0.3s' }} onClick={closeMenu}>
                                         <div className="mt-1" style={{ color: 'var(--accent)' }}>
                                             <i className="bi bi-briefcase fs-4"></i>
                                         </div>
@@ -167,7 +177,7 @@ export default function Navbar() {
 
                         {isAdmin && (
                             <li className="nav-item">
-                                <Link className="nav-link d-flex align-items-center gap-2" to="/admin">
+                                <Link className="nav-link d-flex align-items-center gap-2" to="/admin" onClick={closeMenu}>
                                     <span>Sanjai</span>
                                     <span className="badge bg-warning text-dark">ADMIN</span>
                                 </Link>
@@ -177,10 +187,10 @@ export default function Navbar() {
                         {!user ? (
                             <>
                                 <li className="nav-item">
-                                    <Link className="nav-link" to="/login">Login</Link>
+                                    <Link className="nav-link" to="/login" onClick={closeMenu}>Login</Link>
                                 </li>
                                 <li className="nav-item">
-                                    <Link className="nav-link" to="/signup">Sign Up</Link>
+                                    <Link className="nav-link" to="/signup" onClick={closeMenu}>Sign Up</Link>
                                 </li>
                             </>
                         ) : (
@@ -189,7 +199,7 @@ export default function Navbar() {
                             </li>
                         )}
                         <li className="nav-item ms-lg-3 d-flex align-items-center">
-                            <Link to="/test-drive-booking" className="btn btn-sm" style={{ backgroundColor: 'var(--accent)', color: '#000', fontWeight: '700', textTransform: 'uppercase', letterSpacing: '1.5px', borderRadius: '4px', padding: '8px 20px', border: 'none' }}>
+                            <Link to="/test-drive-booking" className="btn btn-sm" style={{ backgroundColor: 'var(--accent)', color: '#000', fontWeight: '700', textTransform: 'uppercase', letterSpacing: '1.5px', borderRadius: '4px', padding: '8px 20px', border: 'none' }} onClick={closeMenu}>
                                 Book Now
                             </Link>
                         </li>
