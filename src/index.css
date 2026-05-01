@@ -3596,18 +3596,18 @@ a {
 
   .navbar-nav {
     width: 100%;
-    gap: 1.5rem !important; /* Better spacing between items */
+    gap: 0.75rem !important; /* Minimized gap */
     text-align: center;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
   }
 
   .nav-link {
-    font-size: 1.25rem !important; /* Larger, readable links */
+    font-size: 0.95rem !important; /* Minimized from 1.25rem */
     color: #fff !important;
-    font-weight: 600 !important;
+    font-weight: 500 !important;
     text-transform: uppercase;
-    letter-spacing: 2px;
-    padding: 10px 0 !important;
+    letter-spacing: 1.5px;
+    padding: 8px 0 !important; /* Minimized padding */
     transition: color 0.3s ease;
   }
 
@@ -3677,8 +3677,8 @@ a {
 
   .dropdown-item {
     color: #cbd5e1 !important;
-    font-size: 1rem !important;
-    padding: 12px !important;
+    font-size: 0.85rem !important; /* Minimized from 1rem */
+    padding: 8px !important; /* Minimized padding */
     text-align: center;
     border-bottom: 1px solid rgba(255,255,255,0.03);
   }
