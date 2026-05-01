@@ -3551,175 +3551,192 @@ a {
 }
 
 /* ============================================================
-   GLOBAL MOBILE RESPONSIVENESS OVERRIDES — PREMIUM EDITION
+   GLOBAL MOBILE RESPONSIVENESS OVERRIDES — PREMIUM DRAWER
    ============================================================ */
 
 /* Mobile Navbar Overrides */
 @media (max-width: 991px) {
   .navbar {
-    padding: 10px 0 !important;
-    background: rgba(5, 6, 8, 0.98) !important;
+    padding: 12px 0 !important;
+    background: #050608 !important; /* Solid dark navbar on mobile */
+    height: 70px;
   }
 
+  /* FULL SCREEN PREMIUM DRAWER */
   .navbar-collapse {
-    background: rgba(5, 6, 8, 0.99) !important;
-    backdrop-filter: blur(10px);
+    background: rgba(5, 6, 8, 0.98) !important; /* Dark & Elegant */
+    backdrop-filter: blur(15px); /* Strong glassmorphism */
     position: fixed;
-    top: 62px;
+    top: 0;
     left: 0;
     right: 0;
-    bottom: 0;
-    padding: 1.5rem !important;
-    overflow-y: auto;
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    border-top: 1px solid rgba(212, 175, 55, 0.1);
-    display: block !important;
+    height: 100vh !important; /* Full screen height */
+    padding: 90px 2rem 40px !important; /* Space for the header */
+    overflow-y: auto !important;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex !important; /* Use flex for centering items */
+    flex-direction: column;
+    align-items: center;
     opacity: 0;
     visibility: hidden;
-    transform: translateX(100%); /* Slide in from right */
+    transform: translateY(-100%); /* Slide down from top */
+    z-index: 1050;
+    border: none !important;
   }
 
   .navbar-collapse.show {
     opacity: 1;
     visibility: visible;
-    transform: translateX(0);
+    transform: translateY(0);
   }
 
   .navbar-nav {
-    gap: 0.5rem; /* Minimized gap */
+    width: 100%;
+    gap: 1.5rem !important; /* Better spacing between items */
     text-align: center;
+    margin-bottom: 30px;
   }
 
   .nav-link {
-    font-size: 0.95rem !important; /* Minimized font size */
-    margin: 0 !important;
-    padding: 10px 0 !important;
-    letter-spacing: 1px;
+    font-size: 1.25rem !important; /* Larger, readable links */
+    color: #fff !important;
+    font-weight: 600 !important;
     text-transform: uppercase;
+    letter-spacing: 2px;
+    padding: 10px 0 !important;
+    transition: color 0.3s ease;
   }
 
-  /* Compact Dropdowns */
-  .rr-dropdown {
-    padding: 8px !important;
-  }
-  
-  .dropdown-item {
-    font-size: 0.85rem !important;
-    padding: 8px 12px !important;
+  .nav-link:active, .nav-link:focus {
+    color: var(--accent) !important;
   }
 
-  /* Hamburger Icon Styling — Perfected */
+  /* Hamburger Icon Styling — FORCED GOLD & PERFECT X */
   .navbar-toggler {
     border: none !important;
     padding: 0 !important;
-    width: 44px;
-    height: 44px;
+    width: 48px;
+    height: 48px;
     display: flex;
     align-items: center;
     justify-content: center;
     position: relative;
-    z-index: 1100;
+    z-index: 2000; /* Ensure toggler is ABOVE the full-screen menu */
+    background: transparent !important;
     box-shadow: none !important;
     outline: none !important;
-    background: transparent !important;
   }
 
+  /* Hide default blue/Bootstrap icon */
   .navbar-toggler-icon {
-    width: 22px;
-    height: 22px;
-    background-image: none !important;
-    position: relative;
+    display: none !important;
   }
 
-  .navbar-toggler-icon::before,
-  .navbar-toggler-icon::after {
+  /* Custom Golden Lines */
+  .navbar-toggler::before,
+  .navbar-toggler::after {
     content: '';
     position: absolute;
-    left: 0;
-    width: 22px;
+    width: 28px;
     height: 2px;
-    background-color: var(--accent);
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    box-shadow: 0 0 10px rgba(212, 175, 55, 0.3); /* Add visibility glow */
+    background-color: var(--accent) !important; /* FORCE GOLD */
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 0 12px rgba(212, 175, 55, 0.4);
   }
 
-  .navbar-toggler-icon::before { transform: translateY(-6px); }
-  .navbar-toggler-icon::after { transform: translateY(6px); }
+  .navbar-toggler::before { transform: translateY(-8px); }
+  .navbar-toggler::after { transform: translateY(8px); }
   
-  /* Perfect X transformation */
-  .navbar-toggler:not(.collapsed) .navbar-toggler-icon::before {
-    transform: translateY(0) rotate(45deg);
+  /* Perfect X Transformation */
+  .navbar-toggler:not(.collapsed)::before {
+    transform: rotate(45deg) translateY(0);
+    background-color: #fff !important; /* Change to white for contrast when open */
   }
   
-  .navbar-toggler:not(.collapsed) .navbar-toggler-icon::after {
-    transform: translateY(0) rotate(-45deg);
+  .navbar-toggler:not(.collapsed)::after {
+    transform: rotate(-45deg) translateY(0);
+    background-color: #fff !important;
+  }
+
+  /* Dropdowns on Mobile — Expandable List */
+  .rr-dropdown {
+    background: rgba(255, 255, 255, 0.05) !important;
+    border-radius: 12px !important;
+    border: 1px solid rgba(212, 175, 55, 0.1) !important;
+    margin: 10px auto !important;
+    padding: 15px !important;
+    width: 90% !important;
+    max-height: none !important;
+    position: static !important;
+    transform: none !important;
+  }
+
+  .dropdown-item {
+    color: #cbd5e1 !important;
+    font-size: 1rem !important;
+    padding: 12px !important;
+    text-align: center;
+    border-bottom: 1px solid rgba(255,255,255,0.03);
+  }
+
+  .dropdown-item:last-child {
+    border-bottom: none;
+  }
+
+  .cars-mega-menu {
+    display: block !important;
+    width: 100% !important;
+    padding: 10px !important;
+  }
+
+  .mega-menu-grid {
+    grid-template-columns: 1fr 1fr !important; /* Grid view on mobile */
+    gap: 15px !important;
+  }
+
+  .mega-menu-item {
+    flex-direction: column !important;
+    font-size: 0.8rem !important;
+  }
+
+  .mega-menu-img-wrapper {
+    width: 100% !important;
+    margin: 0 0 8px 0 !important;
   }
 }
 
-/* General Layout Minimization */
+/* Hero & General Layout Fixes */
 @media (max-width: 768px) {
   .hero-content {
-    padding-top: 80px !important;
-    padding-bottom: 40px !important;
+    padding-top: 110px !important;
+    min-height: 80vh !important;
   }
 
   .hero-title {
-    font-size: 2.2rem !important; /* Minimized from 2.8rem */
-    line-height: 1.2 !important;
-    margin-bottom: 1rem !important;
+    font-size: 2.4rem !important;
+    letter-spacing: -1px;
   }
   
   .hero-subtitle {
-    font-size: 0.85rem !important;
-    margin-bottom: 1.5rem !important;
-    max-width: 90%;
-    margin-left: auto;
-    margin-right: auto;
+    font-size: 0.9rem !important;
+    line-height: 1.6;
+    margin-bottom: 2rem !important;
   }
 
   .hero-stats-row {
-    gap: 1rem !important;
+    flex-direction: row !important;
+    justify-content: center !important;
+    gap: 2rem !important;
+    margin-top: 2rem;
   }
 
-  .hero-stat-value {
-    font-size: 1.5rem !important; /* Minimized */
-  }
-
-  .hero-stat-label {
-    font-size: 0.6rem !important;
-  }
-
-  .btn-lg {
-    padding: 12px 24px !important;
-    font-size: 0.85rem !important;
-  }
-
-  .cars-grid {
-    grid-template-columns: 1fr !important;
-    gap: 20px !important;
-  }
-
-  .section-title {
-    font-size: 1.8rem !important;
-  }
+  .hero-stat-value { font-size: 1.6rem !important; }
 }
 
-/* Fix horizontal scrolling issues */
+/* Fix horizontal scrolling */
 body, html {
   overflow-x: hidden !important;
-  position: relative;
   width: 100%;
-}
-
-.container {
-  overflow: hidden;
-}
-
-/* Compact Admin elements */
-@media (max-width: 991px) {
-  .admin-page-container {
-    padding: 1rem 10px !important;
-  }
 }
 
 
